@@ -1,10 +1,6 @@
 package lab2;
 
 import java.awt.*;
-
-
-
-
 public abstract class Shape {
     protected int x1, y1, x2, y2;
 
