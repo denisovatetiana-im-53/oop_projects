@@ -25,14 +25,14 @@ public class Main extends JFrame {
 
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("Меню");
-        
+
         JMenuItem itemWork1 = new JMenuItem("Робота1");
         JMenuItem itemWork2 = new JMenuItem("Робота2");
 
-        itemWork1.addActionListener(e -> Module1.runDialogs(Main.this));
+        itemWork1.addActionListener(e -> runWork1());
 
         itemWork2.addActionListener(e -> {
-            String result = Module2.showListDialog(Main.this);
+            String result = Module3.showListDialog(Main.this);
             if (result != null) {
                 selectedGroupText = result;
                 drawPanel.repaint();
@@ -45,6 +45,27 @@ public class Main extends JFrame {
         setJMenuBar(menuBar);
 
         add(drawPanel);
+    }
+
+    private void runWork1() {
+        int currentStep = 1;
+        while (currentStep != 0) {
+            if (currentStep == 1) {
+                int res = Module1.showFirstDialog(this);
+                if (res == 1) {
+                    currentStep = 2; 
+                } else {
+                    currentStep = 0;
+                }
+            } else if (currentStep == 2) {
+                int res = Module2.showSecondDialog(this);
+                if (res == 1) {
+                    currentStep = 1; 
+                } else {
+                    currentStep = 0;
+                }
+            }
+        }
     }
 
     public static void main(String[] args) {
