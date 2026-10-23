@@ -1,9 +1,9 @@
 package lab2;
 
 import java.awt.*;
+
 public abstract class Shape {
     protected int x1, y1, x2, y2;
-
 
     public void set(int x1, int y1, int x2, int y2) {
         this.x1 = x1;
@@ -12,11 +12,8 @@ public abstract class Shape {
         this.y2 = y2;
     }
 
-
     public abstract void show(Graphics g);
 }
-
-
 
 
 class PointShape extends Shape {
@@ -27,9 +24,6 @@ class PointShape extends Shape {
     }
 }
 
-
-
-
 class LineShape extends Shape {
     @Override
     public void show(Graphics g) {
@@ -37,9 +31,6 @@ class LineShape extends Shape {
         g.drawLine(x1, y1, x2, y2);
     }
 }
-
-
-
 
 class RectShape extends Shape {
     @Override
@@ -49,17 +40,13 @@ class RectShape extends Shape {
         int width = Math.abs(x2 - x1);
         int height = Math.abs(y2 - y1);
 
-
         g.setColor(Color.WHITE);
-        g.fillRect(x, y, width, height);
-
+        g.fillRect(x, y, width, height); 
 
         g.setColor(Color.BLACK);
-        g.drawRect(x, y, width, height);
+        g.drawRect(x, y, width, height); 
     }
 }
-
-
 
 
 class EllipseShape extends Shape {
@@ -68,9 +55,9 @@ class EllipseShape extends Shape {
         int rx = Math.abs(x2 - x1);
         int ry = Math.abs(y2 - y1);
 
-
         g.setColor(Color.BLACK);
-        g.drawOval(x1 - rx, y1 - ry, rx * 2, ry * 2);
+        g.drawOval(x1 - rx, y1 - ry, rx * 2, ry * 2); 
     }
 }
+
 
