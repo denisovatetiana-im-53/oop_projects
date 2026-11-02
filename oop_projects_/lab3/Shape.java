@@ -1,14 +1,14 @@
 package lab3;
 
 import java.awt.*;
-
-
-public abstract class Shape {
+abstract class Shape {
     protected int x1, y1, x2, y2;
 
     public void set(int x1, int y1, int x2, int y2) {
-        this.x1 = x1; this.y1 = y1;
-        this.x2 = x2; this.y2 = y2;
+        this.x1 = x1; 
+        this.y1 = y1;
+        this.x2 = x2; 
+        this.y2 = y2;
     }
 
     public abstract void show(Graphics2D g2d);
@@ -22,7 +22,6 @@ class PointShape extends Shape {
     }
 }
 
-
 class LineShape extends Shape {
     @Override
     public void show(Graphics2D g2d) {
@@ -30,7 +29,6 @@ class LineShape extends Shape {
         g2d.drawLine(x1, y1, x2, y2);
     }
 }
-
 
 class RectShape extends Shape {
     @Override
@@ -47,7 +45,6 @@ class RectShape extends Shape {
         g2d.drawRect(x, y, width * 2, height * 2);
     }
 }
-
 
 class EllipseShape extends Shape {
     @Override
