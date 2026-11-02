@@ -190,6 +190,7 @@ public class MainFrame extends JFrame {
         updateTitle(type);
     }
 
+    
     private void updateTitle(String shapeName) {
         setTitle("Лаб. №3 | Режим вводу: " + shapeName); 
     }
