@@ -13,7 +13,7 @@ public abstract class Shape {
     }
 
     public abstract void show(Graphics2D g2d);
-    
+
     public void showRubber(Graphics2D g2d) {
         g2d.setColor(Color.BLUE);
         float[] dash = { 4.0f, 4.0f };

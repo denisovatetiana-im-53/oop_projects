@@ -3,11 +3,11 @@ package lab4;
 import java.awt.*;
 
 public class MyEditor {
-    private static final int MAX_SHAPES = 110;
+    private static final int MAX_SHAPES = 110; 
     private final Shape[] pshape = new Shape[MAX_SHAPES];
     private int shapeCount = 0;
 
-    private Shape currentPrototype = null; 
+    private Shape currentPrototype = null;
 
     public void start(Shape prototype) {
         this.currentPrototype = prototype;
