@@ -7,7 +7,11 @@ public class MyEditor {
     private final Shape[] pshape = new Shape[MAX_SHAPES];
     private int shapeCount = 0;
 
-    private Shape currentPrototype = null;
+    private Shape currentPrototype;
+
+    public MyEditor() {
+        this.currentPrototype = new RectShape();
+    }
 
     public void start(Shape prototype) {
         this.currentPrototype = prototype;
@@ -25,10 +29,10 @@ public class MyEditor {
 
     private Shape cloneShape(Shape proto) {
         if (proto instanceof PointShape) return new PointShape();
-        if (proto instanceof LineOOShape) return new LineOOShape();
         if (proto instanceof LineShape) return new LineShape();
         if (proto instanceof RectShape) return new RectShape();
         if (proto instanceof EllipseShape) return new EllipseShape();
+        if (proto instanceof LineOOShape) return new LineOOShape();
         if (proto instanceof CubeShape) return new CubeShape();
         return null;
     }

@@ -12,7 +12,6 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         editor = new MyEditor();
-        editor.start(new RectShape()); 
 
         setTitle("Лабораторна робота №4 - Варіант 10");
         setSize(950, 650);
