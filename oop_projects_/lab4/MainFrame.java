@@ -20,7 +20,7 @@ public class MainFrame extends JFrame {
 
         JMenuBar menuBar = new JMenuBar();
         JMenu menuObjects = new JMenu("Об'єкти");
-        
+
         JMenuItem itemPoint = new JMenuItem("Крапка");
         JMenuItem itemLine = new JMenuItem("Лінія");
         JMenuItem itemRect = new JMenuItem("Прямокутник");
@@ -41,6 +41,7 @@ public class MainFrame extends JFrame {
         menuObjects.add(itemEllipse);
         menuObjects.add(itemLineOO);
         menuObjects.add(itemCube);
+
         menuBar.add(menuObjects);
         setJMenuBar(menuBar);
 
@@ -77,21 +78,33 @@ public class MainFrame extends JFrame {
         toolBar.add(btnEllipse);
         toolBar.add(btnLineOO);
         toolBar.add(btnCube);
+
         add(toolBar, BorderLayout.NORTH);
 
         JPanel drawPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
+
                 Graphics2D g2d = (Graphics2D) g;
-                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2d.setRenderingHint(
+                    RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON
+                );
 
                 editor.paint(g2d);
 
                 if (isDrawing && ptStart != null && ptCurrent != null) {
                     Shape proto = editor.getCurrentPrototype();
+
                     if (proto != null) {
-                        proto.set(ptStart.x, ptStart.y, ptCurrent.x, ptCurrent.y);
+                        proto.set(
+                            ptStart.x,
+                            ptStart.y,
+                            ptCurrent.x,
+                            ptCurrent.y
+                        );
+
                         proto.showRubber(g2d);
                     }
                 }
@@ -99,6 +112,7 @@ public class MainFrame extends JFrame {
         };
 
         drawPanel.setBackground(Color.WHITE);
+
         drawPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -111,7 +125,14 @@ public class MainFrame extends JFrame {
             public void mouseReleased(MouseEvent e) {
                 if (isDrawing) {
                     isDrawing = false;
-                    editor.addShape(ptStart.x, ptStart.y, e.getX(), e.getY());
+
+                    editor.addShape(
+                        ptStart.x,
+                        ptStart.y,
+                        e.getX(),
+                        e.getY()
+                    );
+
                     drawPanel.repaint();
                 }
             }
@@ -132,12 +153,23 @@ public class MainFrame extends JFrame {
 
     private ImageIcon createShapeIcon(String type) {
         int size = 30;
-        BufferedImage img = new BufferedImage(size, size, BufferedImage.TYPE_INT_ARGB);
+
+        BufferedImage img = new BufferedImage(
+            size,
+            size,
+            BufferedImage.TYPE_INT_ARGB
+        );
+
         Graphics2D g2d = img.createGraphics();
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        g2d.setRenderingHint(
+            RenderingHints.KEY_ANTIALIASING,
+            RenderingHints.VALUE_ANTIALIAS_ON
+        );
 
         g2d.setColor(new Color(245, 245, 245));
         g2d.fillRect(0, 0, size, size);
+
         g2d.setColor(new Color(200, 200, 200));
         g2d.drawRect(0, 0, size - 1, size - 1);
 
@@ -148,23 +180,28 @@ public class MainFrame extends JFrame {
             case "Крапка":
                 g2d.fillRect(14, 14, 3, 3);
                 break;
+
             case "Лінія":
                 g2d.drawLine(6, 24, 24, 6);
                 break;
+
             case "Прямокутник":
                 g2d.setColor(Color.WHITE);
                 g2d.fillRect(5, 8, 20, 14);
                 g2d.setColor(Color.BLACK);
                 g2d.drawRect(5, 8, 20, 14);
                 break;
+
             case "Еліпс":
                 g2d.drawOval(5, 8, 20, 14);
                 break;
+
             case "Лінія з круж.":
                 g2d.drawLine(6, 24, 24, 6);
                 g2d.fillOval(4, 22, 5, 5);
                 g2d.fillOval(23, 4, 5, 5);
                 break;
+
             case "Куб":
                 g2d.drawRect(8, 11, 14, 14);
                 g2d.drawRect(4, 5, 14, 14);
@@ -174,11 +211,15 @@ public class MainFrame extends JFrame {
                 g2d.drawLine(18, 19, 22, 25);
                 break;
         }
+
         g2d.dispose();
+
         return new ImageIcon(img);
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new MainFrame().setVisible(true));
+        SwingUtilities.invokeLater(() ->
+            new MainFrame().setVisible(true)
+        );
     }
 }

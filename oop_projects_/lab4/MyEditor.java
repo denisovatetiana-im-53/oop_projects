@@ -3,23 +3,25 @@ package lab4;
 import java.awt.*;
 
 public class MyEditor {
-    private static final int MAX_SHAPES = 110; 
+    private static final int MAX_SHAPES = 110;
+
     private final Shape[] pshape = new Shape[MAX_SHAPES];
     private int shapeCount = 0;
 
     private Shape currentPrototype;
 
     public MyEditor() {
-        this.currentPrototype = new RectShape();
+        currentPrototype = new RectShape();
     }
 
     public void start(Shape prototype) {
-        this.currentPrototype = prototype;
+        currentPrototype = prototype;
     }
 
     public void addShape(int x1, int y1, int x2, int y2) {
         if (currentPrototype != null && shapeCount < MAX_SHAPES) {
             Shape newShape = cloneShape(currentPrototype);
+
             if (newShape != null) {
                 newShape.set(x1, y1, x2, y2);
                 pshape[shapeCount++] = newShape;
@@ -28,12 +30,34 @@ public class MyEditor {
     }
 
     private Shape cloneShape(Shape proto) {
-        if (proto instanceof PointShape) return new PointShape();
-        if (proto instanceof LineShape) return new LineShape();
-        if (proto instanceof RectShape) return new RectShape();
-        if (proto instanceof EllipseShape) return new EllipseShape();
-        if (proto instanceof LineOOShape) return new LineOOShape();
-        if (proto instanceof CubeShape) return new CubeShape();
+        if (proto instanceof PointShape) {
+            return new PointShape();
+        }
+
+        if (proto instanceof LineShape) {
+            return new LineShape();
+        }
+
+        if (proto instanceof RectShape) {
+            return new RectShape(
+                ((RectShape) proto).isFilled()
+            );
+        }
+
+        if (proto instanceof EllipseShape) {
+            return new EllipseShape(
+                ((EllipseShape) proto).isFilled()
+            );
+        }
+
+        if (proto instanceof LineOOShape) {
+            return new LineOOShape();
+        }
+
+        if (proto instanceof CubeShape) {
+            return new CubeShape();
+        }
+
         return null;
     }
 
